@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Appointments index
+{% block title %}Index des rendez-vous
 {% endblock %}
 
 {% block body %}
@@ -22,8 +22,8 @@
 					<td>{{ appointment.startTime ? appointment.startTime|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ appointment.endTime ? appointment.endTime|date('Y-m-d H:i:s') : '' }}</td>
 					<td>
-						<a href="{{ path('appointments_show', {'id': appointment.id}) }}">show</a>
-						<a href="{{ path('appointments_edit', {'id': appointment.id}) }}">edit</a>
+						<a href="{{ path('appointments_show', {'id': appointment.id}) }}">Voir</a>
+						<a href="{{ path('appointments_edit', {'id': appointment.id}) }}">Éditer</a>
 					</td>
 				</tr>
 			{% else %}
