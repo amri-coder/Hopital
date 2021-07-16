@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des patients
+{% endblock %}
+
+{% block body %}
+
+
+	<h1>Liste des patients</h1>
+
+	<form class="d-flex" method="POST">
+		<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+		<button class="btn btn-outline-success" type="submit">Search</button>
+	</form>
+
+	<table class="table table-success table-striped">
+		<thead class="text-primary">
+			<tr class="text-center">
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Date de naissance</th>
+				<th>E-mail</th>
+				<th>Numéro de carte vital</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for patient in patients %}
+				<tr class="text-center">
+					<td>{{ patient.id }}</td>
+					<td>{{ patient.lastname }}</td>
+					<td>{{ patient.firstname }}</td>
+					<td>{{ patient.birthDate ? patient.birthDate|date('d-m-Y') : '' }}</td>
+					<td>{{ patient.email }}</td>
+					<td>{{ patient.vitalcardNumber }}</td>
+					<td>
+
+						<a href="{{ path('patients_show', {'id': patient.id}) }}" class="text-decoration-none text-white">
+							<button class="btn btn-secondary">
+								Détails
+							</button>
+						</a>
+
+
+						<a href="{{ path('patients_edit', {'id': patient.id}) }}" class="text-decoration-none text-white">
+							<button class="btn btn-primary">
+								Éditer
+							</button>
+						</a>
+
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">Aucun enregistrement trouvé !</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<div class="btn-Index-Patients">
+		<a href="{{ path('patients_new') }}" class="text-decoration-none">
+			<button class="btn btn-info">
+				Créer un nouveau
+			</button>
+		</a>
+	</div>
+
+
+{% endblock %}

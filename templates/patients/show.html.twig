@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Patients
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+
+		<h1 class="text-center">Patient</h1>
+
+		<table class="table table-success table-striped">
+			<tbody>
+				<tr>
+					<th class="text-primary">Id</th>
+					<td>{{ patient.id }}</td>
+				</tr>
+				<tr>
+					<th class="text-primary">Nom</th>
+					<td>{{ patient.lastname }}</td>
+				</tr>
+				<tr>
+					<th class="text-primary">Prénom</th>
+					<td>{{ patient.firstname }}</td>
+				</tr>
+				<tr>
+					<th class="text-primary">Date de naissance</th>
+					<td>{{ patient.birthDate ? patient.birthDate|date('Y-m-d') : '' }}</td>
+				</tr>
+				<tr>
+					<th class="text-primary">E-mail</th>
+					<td>{{ patient.email }}</td>
+				</tr>
+				<tr>
+					<th class="text-primary">Numéro de carte vital</th>
+					<td>{{ patient.vitalcardNumber }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="btn-group" role="group" aria-label="Basic example">
+
+			<a href="{{ path('patients_index') }}" class="text-decoration-none text-white">
+				<button class="btn btn-outline-secondary">
+					Retour à la liste
+				</button>
+			</a>
+
+
+			<a href="{{ path('patients_edit', {'id': patient.id}) }}" class="text-decoration-none text-white">
+				<button class="btn btn-info">
+					Éditer
+				</button>
+			</a>
+
+
+			{{ include('patients/_delete_form.html.twig') }}
+		</div>
+	</div>
+{% endblock %}
