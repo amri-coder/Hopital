@@ -6,9 +6,9 @@
 {% block body %}
 	<h1>Index des appoinetments</h1>
 
-	<table class="table">
-		<thead>
-			<tr>
+	<table class="table table-success table-striped">
+		<thead class="text-primary">
+			<tr class="text-center">
 				<th>Id</th>
 				<th>Heure de début</th>
 				<th>Heure de fin</th>
@@ -17,13 +17,21 @@
 		</thead>
 		<tbody>
 			{% for appointment in appointments %}
-				<tr>
+				<tr class="text-center">
 					<td>{{ appointment.id }}</td>
 					<td>{{ appointment.startTime ? appointment.startTime|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ appointment.endTime ? appointment.endTime|date('Y-m-d H:i:s') : '' }}</td>
 					<td>
-						<a href="{{ path('appointments_show', {'id': appointment.id}) }}">Voir</a>
-						<a href="{{ path('appointments_edit', {'id': appointment.id}) }}">Éditer</a>
+						<a href="{{ path('appointments_show', {'id': appointment.id}) }}">
+							<button class="btn btn-secondary">
+								Détails
+							</button>
+						</a>
+						<a href="{{ path('appointments_edit', {'id': appointment.id}) }}">
+							<button class="btn btn-primary">
+								Éditer
+							</button>
+						</a>
 					</td>
 				</tr>
 			{% else %}
@@ -34,5 +42,9 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('appointments_new') }}">Créer un nouveau</a>
+	<a href="{{ path('appointments_new') }}">
+		<button class="btn btn-info">
+			Créer un nouveau
+		</button>
+	</a>
 {% endblock %}
